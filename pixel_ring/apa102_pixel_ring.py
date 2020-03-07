@@ -46,6 +46,15 @@ class PixelRing(object):
 
         self.put(f)
 
+    def blink(self):
+        self.put(self.pattern.blink)
+
+    def silent_blink(self):
+        self.put(self.pattern.silent_blink)
+
+    def silent_listen(self):
+        self.put(self.pattern.silent_listen)
+
     def listen(self):
         self.put(self.pattern.listen)
 

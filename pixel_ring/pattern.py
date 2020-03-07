@@ -99,6 +99,57 @@ class GoogleHome(object):
         self.show(pixels)
         self.pixels = pixels
 
+    def blink(self):
+        position = int((90 + 15) / 30) % 12
+        basis = self.basis[position*-4:] + self.basis[:position*-4]
+        pixels = [v * 25 for v in basis]
+        self.show(pixels)
+        time.sleep(0.1)
+
+        pixels =  pixels[-4:] + pixels[:-4]
+        self.show(pixels)
+        time.sleep(0.1)
+
+        for i in range(2):
+            new_pixels = pixels[-4:] + pixels[:-4]
+            
+            self.show([v/2+pixels[index] for index, v in enumerate(new_pixels)])
+            pixels = new_pixels
+            time.sleep(0.1)
+
+        self.show(pixels)
+        time.sleep(0.1)
+        self.show([0] * 4 * 12)
+
+    def silent_blink(self):
+        position = int((90 + 15) / 30) % 12
+        basis = self.basis[position*-4:] + self.basis[:position*-4]
+        pixels = [v * 6 for v in basis]
+        self.show(pixels)
+        time.sleep(0.1)
+
+        pixels =  pixels[-4:] + pixels[:-4]
+        self.show(pixels)
+        time.sleep(0.1)
+
+        for i in range(2):
+            new_pixels = pixels[-4:] + pixels[:-4]
+            
+            self.show([v/2+pixels[index] for index, v in enumerate(new_pixels)])
+            pixels = new_pixels
+            time.sleep(0.1)
+
+        self.show(pixels)
+        time.sleep(0.1)
+        self.show([0] * 4 * 12)
+
+    def silent_listen(self):
+        pixels = self.pixels
+        for i in range(1, 6):
+            self.show([(v * i / 24) for v in pixels])
+            time.sleep(0.01)
+
+
     def listen(self):
         pixels = self.pixels
         for i in range(1, 25):
