@@ -124,7 +124,7 @@ class GoogleHome(object):
     def silent_blink(self):
         position = int((90 + 15) / 30) % 12
         basis = self.basis[position*-4:] + self.basis[:position*-4]
-        pixels = [v * 6 for v in basis]
+        pixels = [v  for v in basis]
         self.show(pixels)
         time.sleep(0.1)
 
@@ -145,7 +145,7 @@ class GoogleHome(object):
 
     def silent_listen(self):
         pixels = self.pixels
-        for i in range(1, 6):
+        for i in range(1, 3):
             self.show([(v * i / 24) for v in pixels])
             time.sleep(0.01)
 
